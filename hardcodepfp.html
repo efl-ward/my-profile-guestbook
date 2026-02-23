@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🍄 Mario's Guestbook</title>
+  <title>🍄 Eggward's Guestbook</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -196,16 +196,7 @@
       margin-top: 8px;
     }
 
-    /* Mario sprite (CSS pixel art) */
-    .mario-sprite {
-      width: 48px;
-      height: 48px;
-      image-rendering: pixelated;
-      animation: mario-run 0.5s steps(1) infinite;
-    }
-    .mario-sprite svg { width: 100%; height: 100%; }
-
-    /* Form panel */
+    /* Panel */
     .panel {
       background: var(--mario-blue);
       border: 4px solid var(--text-dark);
@@ -239,7 +230,7 @@
       margin-top: 14px;
     }
 
-    input, textarea, select {
+    input, textarea {
       width: 100%;
       padding: 10px 12px;
       font-family: 'Press Start 2P', monospace;
@@ -253,190 +244,105 @@
       outline: none;
       resize: vertical;
     }
-    input:focus, textarea:focus, select:focus {
+
+    input:focus, textarea:focus {
       border-color: var(--mario-yellow);
       box-shadow: inset 2px 2px 0 #ccc, 0 0 0 2px var(--mario-yellow);
     }
 
     .btn {
-      display: inline-block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px 24px;
       font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      padding: 12px 24px;
-      background: var(--mario-red);
+      font-size: 9px;
+      background: var(--mario-green);
       color: var(--white);
-      border: 3px solid var(--text-dark);
-      border-right-color: #600;
-      border-bottom-color: #600;
+      border: 4px solid var(--text-dark);
+      border-right-color: #2d5a2f;
+      border-bottom-color: #2d5a2f;
       box-shadow: 4px 4px 0 var(--text-dark);
       cursor: pointer;
-      text-shadow: 1px 1px 0 #000;
-      transition: transform 0.08s, box-shadow 0.08s;
-      margin-top: 20px;
-      width: 100%;
-      text-align: center;
-    }
-    .btn:hover { background: #ff3030; }
-    .btn:active {
-      transform: translate(3px, 3px);
-      box-shadow: 1px 1px 0 var(--text-dark);
+      transition: transform 0.1s, box-shadow 0.1s;
+      text-shadow: 2px 2px 0 var(--text-dark);
     }
 
-    /* Coin counter */
+    .btn:hover { background: #52b356; }
+    .btn:active { transform: translateY(2px); box-shadow: 2px 2px 0 var(--text-dark); }
+    .btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--mario-yellow);
+      color: var(--text-dark);
+      padding: 12px 24px;
+      border: 3px solid var(--text-dark);
+      box-shadow: 4px 4px 0 var(--text-dark);
+      font-size: 8px;
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(.22,1,.36,1);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* Star animation */
+    .star {
+      position: fixed;
+      font-size: 32px;
+      pointer-events: none;
+      z-index: 9998;
+      animation: star-rise 1s ease-out forwards;
+    }
+    @keyframes star-rise {
+      0%   { transform: translateY(0) scale(0); opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+    }
+
+    /* HUD */
+    .hud {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7px;
+      color: var(--white);
+      text-shadow: 2px 2px 0 var(--text-dark);
+      z-index: 100;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hud span { display: flex; align-items: center; gap: 6px; }
+
+    .coin-icon {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--coin);
+      border-radius: 50%;
+      border: 2px solid #d4a000;
+      box-shadow: inset -1px -1px 0 #d4a000;
+    }
+
     .coin-counter {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 8px;
       font-size: 8px;
-      color: var(--mario-yellow);
-      text-shadow: 2px 2px 0 var(--text-dark);
-      background: #0008;
-      padding: 6px 12px;
-      border: 2px solid var(--coin);
-      margin-bottom: 16px;
-    }
-    .coin-icon {
-      width: 16px;
-      height: 16px;
-      background: var(--coin);
-      border-radius: 50%;
-      border: 2px solid #a07800;
-      display: inline-block;
-      box-shadow: inset -2px -2px 0 #a07800;
-      animation: spin-coin 2s linear infinite;
-    }
-    @keyframes spin-coin {
-      0%, 100% { transform: scaleX(1); }
-      25% { transform: scaleX(0.2); }
-      50% { transform: scaleX(1); }
-      75% { transform: scaleX(0.2); }
-    }
-
-    /* Guestbook entries */
-    .entries-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .entries-title {
-      font-size: 10px;
       color: var(--white);
       text-shadow: 2px 2px 0 var(--text-dark);
-    }
-
-    .entry-card {
-      background: var(--white);
-      border: 3px solid var(--text-dark);
-      border-right-color: #555;
-      border-bottom-color: #555;
-      box-shadow: 4px 4px 0 var(--text-dark);
-      padding: 16px;
       margin-bottom: 16px;
-      position: relative;
-      animation: pop-in 0.35s cubic-bezier(.22,1,.36,1) both;
     }
-    @keyframes pop-in {
-      from { transform: scale(0.85); opacity: 0; }
-      to   { transform: scale(1); opacity: 1; }
-    }
-
-    .entry-card::before {
-      content: attr(data-character);
-      position: absolute;
-      top: -14px;
-      left: 12px;
-      font-size: 20px;
-    }
-
-    .entry-name {
-      font-size: 9px;
-      color: var(--mario-red);
-      text-shadow: 1px 1px 0 #ccc;
-      margin-bottom: 8px;
-    }
-    .entry-msg {
-      font-size: 7px;
-      color: var(--text-dark);
-      line-height: 1.8;
-      word-break: break-word;
-    }
-    .entry-meta {
-      font-size: 6px;
-      color: #888;
-      margin-top: 10px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .entry-character {
-      display: inline-block;
-      background: var(--mario-yellow);
-      color: var(--text-dark);
-      border: 2px solid var(--text-dark);
-      padding: 2px 6px;
-      font-size: 6px;
-      text-shadow: none;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 16px;
-      font-size: 8px;
-      color: var(--white);
-      text-shadow: 2px 2px 0 var(--text-dark);
-      line-height: 2.5;
-    }
-
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-80px);
-      background: var(--mario-green);
-      color: var(--white);
-      border: 3px solid var(--text-dark);
-      box-shadow: 4px 4px 0 var(--text-dark);
-      padding: 12px 24px;
-      font-size: 9px;
-      text-shadow: 1px 1px 0 #000;
-      z-index: 1000;
-      transition: transform 0.4s cubic-bezier(.22,1,.36,1);
-      white-space: nowrap;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-
-    /* Stars floating */
-    .star {
-      position: fixed;
-      pointer-events: none;
-      font-size: 24px;
-      z-index: 999;
-      animation: star-fly 1s ease-out forwards;
-    }
-    @keyframes star-fly {
-      0%   { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-120px) scale(0.3); }
-    }
-
-    /* HUD top bar */
-    .hud {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: #000c;
-      padding: 8px 24px;
-      display: flex;
-      gap: 32px;
-      font-size: 8px;
-      color: var(--white);
-      text-shadow: 1px 1px 0 #000;
-      backdrop-filter: blur(4px);
-    }
-    .hud span { display: flex; align-items: center; gap: 6px; }
 
     /* Character selector */
     .char-grid {
@@ -458,6 +364,86 @@
     .char-btn:hover { background: var(--mario-yellow); }
     .char-btn.selected { background: var(--mario-yellow); border-color: var(--mario-red); transform: scale(1.08); }
     .char-label { font-size: 5px; font-family: 'Press Start 2P', monospace; display: block; margin-top: 4px; color: var(--text-dark); }
+
+    /* Entries */
+    .entries-header {
+      background: var(--brick);
+      border: 4px solid var(--text-dark);
+      border-radius: 4px 4px 0 0;
+      padding: 16px;
+      margin-bottom: 0;
+    }
+    .entries-title {
+      font-size: 10px;
+      color: var(--white);
+      text-shadow: 2px 2px 0 var(--text-dark);
+      text-align: center;
+    }
+
+    #entries-list {
+      background: var(--white);
+      border: 4px solid var(--text-dark);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .entry-card {
+      background: #fffef5;
+      border: 3px solid var(--text-dark);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 3px 3px 0 #ddd;
+      animation: entry-appear 0.4s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes entry-appear {
+      from { transform: translateX(-20px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+
+    .entry-name {
+      font-size: 9px;
+      color: var(--mario-red);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .entry-msg {
+      font-size: 7px;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin-bottom: 10px;
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 6px;
+      color: #666;
+    }
+    .entry-meta span { display: flex; align-items: center; gap: 4px; }
+    .entry-character { color: var(--mario-blue); font-weight: bold; }
+
+    .empty-state {
+      text-align: center;
+      color: #999;
+      font-size: 8px;
+      padding: 40px 20px;
+      line-height: 1.8;
+    }
+
+    .loading {
+      text-align: center;
+      color: var(--mario-blue);
+      font-size: 8px;
+      padding: 20px;
+    }
 
     @media (max-width: 480px) {
       h1 { font-size: 13px; }
@@ -535,17 +521,17 @@
         <button type="button" class="char-btn" data-char="🐢" onclick="selectChar(this)">🐢<span class="char-label">KOOPA</span></button>
         <button type="button" class="char-btn" data-char="⭐" onclick="selectChar(this)">⭐<span class="char-label">STAR</span></button>
         <button type="button" class="char-btn" data-char="🌸" onclick="selectChar(this)">🌸<span class="char-label">DAISY</span></button>
-        <button type="button" class="char-btn" data-char="🍄" onclick="selectChar(this)">🦖<span class="char-label">BOWSER</span></button>
+        <button type="button" class="char-btn" data-char="🦖" onclick="selectChar(this)">🦖<span class="char-label">BOWSER</span></button>
         <button type="button" class="char-btn" data-char="👻" onclick="selectChar(this)">👻<span class="char-label">BOO</span></button>
       </div>
 
-      <label for="country">YOUR WORLD (COUNTRY):</label>
+      <label for="country">WHERE U FROM:</label>
       <input id="country" type="text" placeholder="e.g. Mushroom Kingdom" maxlength="40" />
 
       <label for="message">YOUR MESSAGE:</label>
       <textarea id="message" rows="4" placeholder="Leave a message for the next adventurer..." maxlength="300" required></textarea>
 
-      <button type="submit" class="btn">▶ SUBMIT ENTRY ◀</button>
+      <button type="submit" class="btn" id="submit-btn">▶ SUBMIT ENTRY ◀</button>
     </form>
   </div>
 
@@ -555,65 +541,154 @@
       <div class="entries-title">📜 ADVENTURER LOG</div>
     </div>
     <div id="entries-list">
-      <div class="empty-state">NO ENTRIES YET...<br>BE THE FIRST HERO!</div>
+      <div class="loading">LOADING ENTRIES...</div>
     </div>
   </div>
 </div>
 
+<!-- Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-  // ── State ──────────────────────────────────────────────────────────────────
-  let entries = JSON.parse(localStorage.getItem('mario_guestbook') || '[]');
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SUPABASE CONFIGURATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 🔧 REPLACE THESE WITH YOUR SUPABASE PROJECT CREDENTIALS
+  const SUPABASE_URL = 'https://xbjvehqqvuhguigzciku.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhianZlaHFxdnVoZ3VpZ3pjaWt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNTIzMzksImV4cCI6MjA4NjkyODMzOX0.nhgtJh96EeaXBBNX1ARoNS_jpg6RVqkm7k8sVRHUwxM';
+
+  // Initialize Supabase client
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // STATE
+  // ═══════════════════════════════════════════════════════════════════════════
   let selectedChar = '🍄';
   let coins = parseInt(localStorage.getItem('mario_coins') || '0');
 
-  // ── Init ───────────────────────────────────────────────────────────────────
-  renderEntries();
+  // ═══════════════════════════════════════════════════════════════════════════
+  // INIT
+  // ═══════════════════════════════════════════════════════════════════════════
+  loadEntries();
   updateHud();
 
-  // ── Character selection ────────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SUPABASE FUNCTIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  /**
+   * Load all guestbook entries from Supabase
+   */
+  async function loadEntries() {
+    try {
+      const { data, error } = await supabase
+        .from('guestbook')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      renderEntries(data || []);
+    } catch (error) {
+      console.error('Error loading entries:', error);
+      document.getElementById('entries-list').innerHTML = 
+        '<div class="empty-state">ERROR LOADING ENTRIES<br>CHECK CONSOLE 🔧</div>';
+    }
+  }
+
+  /**
+   * Save a new entry to Supabase
+   */
+  async function saveEntry(entry) {
+    try {
+      const { data, error } = await supabase
+        .from('guestbook')
+        .insert([{
+          name: entry.name,
+          message: entry.message,
+          country: entry.country,
+          character: entry.character
+        }])
+        .select();
+
+      if (error) throw error;
+
+      return data[0];
+    } catch (error) {
+      console.error('Error saving entry:', error);
+      throw error;
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CHARACTER SELECTION
+  // ═══════════════════════════════════════════════════════════════════════════
   function selectChar(btn) {
     document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    selectedChar = btn.dataset.char || btn.innerText.split('\n')[0];
+    selectedChar = btn.dataset.char;
   }
 
-  // ── Form submit ────────────────────────────────────────────────────────────
-  function handleSubmit(e) {
+  // ═══════════════════════════════════════════════════════════════════════════
+  // FORM SUBMIT
+  // ═══════════════════════════════════════════════════════════════════════════
+  async function handleSubmit(e) {
     e.preventDefault();
-    const name    = document.getElementById('name').value.trim();
+    
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'SAVING...';
+
+    const name = document.getElementById('name').value.trim();
     const message = document.getElementById('message').value.trim();
     const country = document.getElementById('country').value.trim();
 
-    if (!name || !message) return;
+    if (!name || !message) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '▶ SUBMIT ENTRY ◀';
+      return;
+    }
 
     const entry = {
-      id: Date.now(),
       name,
       message,
       country: country || 'Mushroom Kingdom',
-      character: selectedChar,
-      date: new Date().toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' })
+      character: selectedChar
     };
 
-    entries.unshift(entry);
-    localStorage.setItem('mario_guestbook', JSON.stringify(entries));
+    try {
+      await saveEntry(entry);
 
-    coins++;
-    localStorage.setItem('mario_coins', coins);
+      // Update coins
+      coins++;
+      localStorage.setItem('mario_coins', coins);
+      updateHud();
 
-    e.target.reset();
-    document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
-    document.querySelector('.char-btn').classList.add('selected');
-    selectedChar = '🍄';
+      // Reset form
+      e.target.reset();
+      document.querySelectorAll('.char-btn').forEach(b => b.classList.remove('selected'));
+      document.querySelector('.char-btn').classList.add('selected');
+      selectedChar = '🍄';
 
-    renderEntries();
-    updateHud();
-    showToast('⭐ 1UP! ENTRY SAVED!');
-    spawnStarAt(window.innerWidth / 2, window.innerHeight / 2);
+      // Reload entries
+      await loadEntries();
+
+      // Show success feedback
+      showToast('⭐ 1UP! ENTRY SAVED!');
+      spawnStarAt(window.innerWidth / 2, window.innerHeight / 2);
+
+    } catch (error) {
+      showToast('❌ ERROR SAVING! TRY AGAIN');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '▶ SUBMIT ENTRY ◀';
+    }
   }
 
-  // ── Render entries ─────────────────────────────────────────────────────────
-  function renderEntries() {
+  // ═══════════════════════════════════════════════════════════════════════════
+  // RENDER ENTRIES
+  // ═══════════════════════════════════════════════════════════════════════════
+  function renderEntries(entries) {
     const list = document.getElementById('entries-list');
     document.getElementById('entry-count').textContent = entries.length;
 
@@ -622,25 +697,51 @@
       return;
     }
 
-    list.innerHTML = entries.map((e, i) => `
-      <div class="entry-card" data-character="${e.character}" style="animation-delay:${i * 0.05}s">
-        <div class="entry-name">${escapeHtml(e.name)}</div>
-        <div class="entry-msg">"${escapeHtml(e.message)}"</div>
-        <div class="entry-meta">
-          <span class="entry-character">${e.character} ${escapeHtml(e.character === '🍄' ? 'MARIO' : e.character === '👾' ? 'LUIGI' : 'HERO')}</span>
-          <span>🌍 ${escapeHtml(e.country)}</span>
-          <span>📅 ${e.date}</span>
+    list.innerHTML = entries.map((e, i) => {
+      const date = new Date(e.created_at).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+
+      const characterName = getCharacterName(e.character);
+
+      return `
+        <div class="entry-card" style="animation-delay:${i * 0.05}s">
+          <div class="entry-name">${e.character} ${escapeHtml(e.name)}</div>
+          <div class="entry-msg">"${escapeHtml(e.message)}"</div>
+          <div class="entry-meta">
+            <span class="entry-character">${characterName}</span>
+            <span>🌍 ${escapeHtml(e.country)}</span>
+            <span>📅 ${date}</span>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
-  // ── HUD update ─────────────────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // HELPER FUNCTIONS
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  function getCharacterName(char) {
+    const names = {
+      '🍄': 'MARIO',
+      '👾': 'LUIGI',
+      '👸': 'PEACH',
+      '🐢': 'KOOPA',
+      '⭐': 'STAR',
+      '🌸': 'DAISY',
+      '🦖': 'BOWSER',
+      '👻': 'BOO'
+    };
+    return names[char] || 'HERO';
+  }
+
   function updateHud() {
     document.getElementById('hud-coins').textContent = coins;
   }
 
-  // ── Toast ──────────────────────────────────────────────────────────────────
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -648,7 +749,6 @@
     setTimeout(() => t.classList.remove('show'), 2500);
   }
 
-  // ── Star spawn (? blocks) ──────────────────────────────────────────────────
   function spawnStar(el) {
     const rect = el.getBoundingClientRect();
     spawnStarAt(rect.left + rect.width / 2, rect.top);
@@ -665,26 +765,14 @@
     star.className = 'star';
     star.textContent = '⭐';
     star.style.left = x + 'px';
-    star.style.top  = y + 'px';
+    star.style.top = y + 'px';
     document.body.appendChild(star);
     setTimeout(() => star.remove(), 1000);
   }
 
-  // ── Utils ──────────────────────────────────────────────────────────────────
   function escapeHtml(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
-
-  // Fix char buttons — use emoji from text content correctly
-  document.querySelectorAll('.char-btn').forEach(btn => {
-    if (!btn.dataset.char) {
-      btn.dataset.char = btn.querySelector('.char-label') 
-        ? btn.childNodes[0].textContent.trim() 
-        : btn.textContent.trim();
-    }
-  });
-  // Fix Bowser button
-  document.querySelectorAll('.char-btn')[6].dataset.char = '🦖';
 </script>
 </body>
 </html>
