@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <header className="mario-header">
-        <h1>Mario's Guestbook</h1>
-        <img src="/mario-hat.png" alt="Mario Hat" className="hat" />
+        <h1>Ward's Guestbook</h1>
+        <img src="/icons8-mario-48.png" alt="Ward Logo" className="hat" />
       </header>
       <main>
         <GuestbookForm onPostAdded={handlePostAdded} />
