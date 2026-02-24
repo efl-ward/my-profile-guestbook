@@ -1,42 +1,60 @@
+/* 🍄 Mario Theme Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  /* Classic Mario Sky Blue */
+  background-color: #5C94FC; 
+  font-family: 'Press+Start+2P', cursive;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nes-container {
+  background-color: white !important;
+  border-image-repeat: stretch !important;
+  margin-bottom: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Make the title look like a brick block */
+.title {
+  background-color: #E76928 !important; /* Mario Brick Orange */
+  color: white !important;
+  padding: 5px 10px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Custom Cursor (Optional bonus points!) */
+* {
+  cursor: url('https://unpkg.com/nes.css@2.3.0/assets/cursor-click.png'), auto;
 }
 
-.card {
-  padding: 2em;
+/* Mario Cloud styling for the background */
+.app-container {
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
-.read-the-docs {
-  color: #888;
+/* Ground floor styling */
+footer {
+  height: 50px;
+  background: 
+    linear-gradient(45deg, #744000 25%, transparent 25%), 
+    linear-gradient(-45deg, #744000 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #744000 75%), 
+    linear-gradient(-45deg, transparent 75%, #744000 75%);
+  background-size: 20px 20px;
+  background-color: #BC4B00; /* Brick color */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
