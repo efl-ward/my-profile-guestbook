@@ -48,7 +48,6 @@ export default function GuestbookForm({ onEntryAdded, coins, onCoinCollected }) 
         <input
           id="name"
           type="text"
-          placeholder="e.g. MARIO, LUIGI..."
           maxLength="40"
           value={name}
           onChange={(e) => setName(e.target.value)}
