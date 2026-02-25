@@ -24,17 +24,18 @@ export default function ProfileView({ onEdit }) {
   };
 
   const getDefaultProfile = () => ({
-    name: 'SUPER MARIO',
-    title: 'LEGENDARY HERO & PLUMBER',
-    bio: 'A brave plumber from the Mushroom Kingdom on an endless quest to rescue Princess Peach from Bowser. Expert in jumping, pipe navigation, and coin collection. Known for defeating enemies by jumping on their heads and breaking brick blocks with fists.',
-    location: 'Mushroom Kingdom',
-    occupation: 'Professional Plumber & Hero',
+    name: 'EDUARD FLORENCE L. SERNA',
+    title: 'LEGENDARY HATDOG STUDENT',
+    bio: 'I am a motivated and curious individual who enjoys learning new things and improving my skills. I have a strong interest in technology, creativity, and problem-solving. I am dedicated to doing my best in every task and always aim to grow both personally and professionally. In my free time, I enjoy exploring new ideas, working on projects, and spending time on things that inspire me.',
+    location: 'TAGUIG CITY',
+    occupation: 'STUDENT AT ASIA PACIFIC COLLEGE',
     specialty: 'Platforming, Rescue Missions, Kart Racing',
-    website: 'https://EXAMPLE WEBSITE.com',
+    website: 'https://www.facebook.com/efl.srn',
     coins_collected: 9999,
     worlds_completed: 8,
     lives: '∞',
-    power_level: '⭐⭐⭐'
+    power_level: '⭐⭐⭐',
+    avatar_url: null
   });
 
   if (loading) return <div className="panel">Loading profile...</div>;
@@ -44,7 +45,23 @@ export default function ProfileView({ onEdit }) {
       {/* Profile Header */}
       <div className="panel">
         <div className="profile-avatar">
-          <div className="avatar-circle">🍄</div>
+          {profile.avatar_url ? (
+            <img 
+              src={profile.avatar_url} 
+              alt={profile.name} 
+              className="avatar-image"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'inline-flex';
+              }}
+            />
+          ) : null}
+          <div 
+            className="avatar-circle" 
+            style={{ display: profile.avatar_url ? 'none' : 'inline-flex' }}
+          >
+            🍄
+          </div>
           <div className="profile-name">{profile.name}</div>
           <div className="profile-title">{profile.title}</div>
         </div>

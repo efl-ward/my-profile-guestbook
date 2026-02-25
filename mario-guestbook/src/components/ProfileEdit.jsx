@@ -11,7 +11,8 @@ export default function ProfileEdit({ onSave, onCancel }) {
     specialty: '',
     website: '',
     coins_collected: 0,
-    worlds_completed: 0
+    worlds_completed: 0,
+    avatar_url: ''
   });
   const [loading, setLoading] = useState(false);
 
@@ -64,7 +65,7 @@ export default function ProfileEdit({ onSave, onCancel }) {
       onSave(result);
     } catch (error) {
       console.error('Error saving profile:', error);
-      alert('Failed to save profile.');
+      alert('Failed to save profile: ' + error.message);
     } finally {
       setLoading(false);
     }
@@ -80,6 +81,9 @@ export default function ProfileEdit({ onSave, onCancel }) {
 
         <label htmlFor="title">YOUR TITLE:</label>
         <input id="title" type="text" placeholder="e.g. Legendary Hero" value={formData.title} onChange={handleChange} />
+
+        <label htmlFor="avatar_url">PROFILE PICTURE URL:</label>
+        <input id="avatar_url" type="url" placeholder="https://github.com/efl-ward/mobprog_finals/blob/main/kendrick_lmao-removebg-preview.png" value={formData.avatar_url || ''} onChange={handleChange} />
 
         <label htmlFor="bio">ABOUT YOU:</label>
         <textarea id="bio" rows="5" placeholder="Tell your story..." value={formData.bio} onChange={handleChange} required />

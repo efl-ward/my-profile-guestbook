@@ -2,7 +2,7 @@ export default function EntriesList({ entries }) {
   if (entries.length === 0) {
     return (
       <div className="empty-state">
-        NO ENTRIES YET...<br />BE THE FIRST HERO! 🍄
+        NO ENTRIES YET...<br />BE THE FIRST HERO! 
       </div>
     );
   }
