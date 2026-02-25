@@ -30,7 +30,7 @@ export default function ProfileView({ onEdit }) {
     location: 'Mushroom Kingdom',
     occupation: 'Professional Plumber & Hero',
     specialty: 'Platforming, Rescue Missions, Kart Racing',
-    website: 'https://super-mario.com',
+    website: 'https://EXAMPLE WEBSITE.com',
     coins_collected: 9999,
     worlds_completed: 8,
     lives: '∞',
