@@ -116,7 +116,7 @@ function AppContent() {
 
   return (
     <>
-      <HUD coins={coins} title={window.location.pathname === '/profile' ? "MARIO'S PROFILE" : "MARIO GUESTBOOK"} />
+      <HUD coins={coins} title={window.location.pathname === '/profile' ? "WARD'S PROFILE" : "WARD'S GUESTBOOK"} />
       <GroundPipes />
       <Toast message={toastMessage} show={showToast} onHide={hideToast} />
       <div className="container">

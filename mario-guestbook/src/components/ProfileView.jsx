@@ -115,12 +115,12 @@ export default function ProfileView({ onEdit }) {
       <div className="panel">
         <div className="panel-title">⭐ POWER-UPS & SKILLS</div>
         <div className="skills-list">
-          <div className="skill-badge">🍄 Super Mushroom</div>
-          <div className="skill-badge">🌟 Star Power</div>
-          <div className="skill-badge">🌺 Fire Flower</div>
-          <div className="skill-badge">🦅 Cape Feather</div>
-          <div className="skill-badge">🍃 Tanooki Suit</div>
-          <div className="skill-badge">⚡ Lightning Speed</div>
+          <div className="skill-badge">🍄 HTML</div>
+          <div className="skill-badge">🌟 JAVASCRIPT</div>
+          <div className="skill-badge">🌺 CSS</div>
+          <div className="skill-badge">🦅 MYSQL</div>
+          <div className="skill-badge">🍃 PYTHON</div>
+          <div className="skill-badge">⚡ JAVA</div>
         </div>
       </div>
 

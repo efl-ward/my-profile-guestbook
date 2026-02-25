@@ -1,13 +1,13 @@
 export default function CharacterGrid({ selectedChar, onSelectChar }) {
   const characters = [
-    { emoji: '🍄', label: 'MARIO' },
-    { emoji: '👾', label: 'LUIGI' },
-    { emoji: '👸', label: 'PEACH' },
-    { emoji: '🐢', label: 'KOOPA' },
+    { emoji: '🍄', label: 'KABUTE' },
+    { emoji: '👾', label: 'SWIPER' },
+    { emoji: '👸', label: 'REYNA' },
+    { emoji: '🐢', label: 'TURTOL' },
     { emoji: '⭐', label: 'STAR' },
-    { emoji: '🌸', label: 'DAISY' },
-    { emoji: '🦖', label: 'BOWSER' },
-    { emoji: '👻', label: 'BOO' },
+    { emoji: '🌸', label: 'BOLAKLAK' },
+    { emoji: '🦖', label: 'T-REX' },
+    { emoji: '👻', label: 'MOO-MOO' },
   ];
 
   return (

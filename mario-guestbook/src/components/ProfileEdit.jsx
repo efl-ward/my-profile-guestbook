@@ -79,16 +79,16 @@ export default function ProfileEdit({ onSave, onCancel }) {
         <input id="name" type="text" placeholder="e.g. SUPER MARIO" value={formData.name} onChange={handleChange} required />
 
         <label htmlFor="title">YOUR TITLE:</label>
-        <input id="title" type="text" placeholder="e.g. Legendary Hero & Plumber" value={formData.title} onChange={handleChange} />
+        <input id="title" type="text" placeholder="e.g. Legendary Hero" value={formData.title} onChange={handleChange} />
 
         <label htmlFor="bio">ABOUT YOU:</label>
         <textarea id="bio" rows="5" placeholder="Tell your story..." value={formData.bio} onChange={handleChange} required />
 
         <label htmlFor="location">LOCATION:</label>
-        <input id="location" type="text" placeholder="e.g. Mushroom Kingdom" value={formData.location} onChange={handleChange} />
+        <input id="location" type="text" placeholder="e.g. TAGUIG CITY" value={formData.location} onChange={handleChange} />
 
         <label htmlFor="occupation">OCCUPATION:</label>
-        <input id="occupation" type="text" placeholder="e.g. Professional Plumber" value={formData.occupation} onChange={handleChange} />
+        <input id="occupation" type="text" placeholder="e.g. Student" value={formData.occupation} onChange={handleChange} />
 
         <label htmlFor="specialty">SPECIALTY:</label>
         <input id="specialty" type="text" placeholder="e.g. Platforming, Rescue Missions" value={formData.specialty} onChange={handleChange} />
@@ -97,7 +97,7 @@ export default function ProfileEdit({ onSave, onCancel }) {
         <input id="website" type="url" placeholder="https://your-website.com" value={formData.website} onChange={handleChange} />
 
         <label htmlFor="coins_collected">COINS COLLECTED:</label>
-        <input id="coins_collected" type="number" placeholder="9999" min="0" value={formData.coins_collected} onChange={handleChange} />
+        <input id="coins_collected" type="number" placeholder="0625" min="0" value={formData.coins_collected} onChange={handleChange} />
 
         <label htmlFor="worlds_completed">WORLDS COMPLETED:</label>
         <input id="worlds_completed" type="number" placeholder="8" min="0" value={formData.worlds_completed} onChange={handleChange} />
