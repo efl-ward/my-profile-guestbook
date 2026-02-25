@@ -585,3 +585,163 @@ input:focus, textarea:focus, select:focus {
   margin-top: 10px;
 }
 .btn-secondary:hover { background: #ff4444; }
+
+/* ----- Carousel / Album Styles (cleaned up) ----- */
+.photo-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.carousel-image-container {
+  width: 3500px;          /* Adjust this to change image size */
+  height: 370px;
+  overflow: hidden;
+  border: 4px solid var(--mario-yellow);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--text-dark);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* was 'cover' – now shows full image */
+  background-color: #000; /* optional: fills empty space with black */
+}
+
+.carousel-btn {
+  background: var(--mario-red);
+  color: white;
+  border: 3px solid var(--text-dark);
+  border-radius: 30%;
+  width: 50svb;            /* Proportional to larger container */
+  height: 40px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--text-dark);
+  transition: transform 0.1s;
+}
+
+.carousel-btn:hover {
+  background: #ff4444;
+  transform: scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--text-dark);
+}
+
+.photo-counter {
+  text-align: center;
+  font-size: 8px;
+  color: var(--white);
+  text-shadow: 1px 1px 0 var(--text-dark);
+  margin-top: 10px;
+}
+
+/* Increase spacing between panels (including carousels) */
+.panel + .panel {
+  margin-top: 40px;       /* Adjust this value to control vertical space between sections */
+}
+
+/* Optional: remove any duplicate hobby styles if you're not using them */
+/* (keeping them for now) */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.hobby-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 4px solid var(--mario-red);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 4px 4px 0 var(--text-dark);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hobby-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0 var(--txext-dark);
+}
+
+.hobby-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.hobby-title {
+  font-size: 12px;
+  color: var(--mario-red);
+  text-shadow: 1px 1px 0 #fff;
+  margin-bottom: 8px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.hobby-description {
+  font-size: 7px;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.hobby-like-btn {
+  background: var(--mario-yellow);
+  border: 3px solid var(--text-dark);
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 8px;
+  font-family: 'Press Start 2P', cursive;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.hobby-like-btn:hover {
+  background: #ffe066;
+  transform: scale(1.05);
+}
+
+.hobby-like-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--text-dark);
+}
+
+.hobby-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--mario-yellow);
+  margin: 0 auto 10px;
+  display: block;
+  box-shadow: 3px 3px 0 var(--text-dark);
+}
+
+@media (max-width: 600px) {
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+  }
+  .carousel-image-container {
+    width: 250px;
+    height: 250px;
+  }
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
