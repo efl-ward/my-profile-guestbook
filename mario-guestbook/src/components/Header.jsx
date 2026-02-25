@@ -43,7 +43,7 @@ export default function Header({ onCoinCollected }) {
       <div className="logo-row">
         <span style={{ fontSize: '40px' }}>🍄</span>
         <div>
-          <h1>MARIO'S<br />GUESTBOOK</h1>
+          <h1>WARD'S<br />GUESTBOOK</h1>
           <div className="subtitle">▶ SIGN IN &amp; JOIN THE ADVENTURE! ◀</div>
         </div>
         <span style={{ fontSize: '40px' }}>⭐</span>

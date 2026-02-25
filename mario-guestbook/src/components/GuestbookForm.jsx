@@ -61,7 +61,6 @@ export default function GuestbookForm({ onEntryAdded, coins, onCoinCollected }) 
         <input
           id="country"
           type="text"
-          placeholder="e.g. Mushroom Kingdom"
           maxLength="40"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
