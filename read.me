@@ -1,0 +1,141 @@
+🍄 A Mario Theme Guestbook & Profile
+A fun, Mario‑themed web application that combines a guestbook and a personal profile page. Users can sign the guestbook and view/edit a detailed Mario‑inspired profile with custom avatar, stats, skills, and photo albums. Built with React, Vite, and Supabase.
+
+✨ Features
+Guestbook (World 1-1)
+Sign the guestbook: Enter your name, choose a character (Mario, Luigi, Peach, etc.), your country, and a message.
+
+Adventurer Log: View all guestbook entries in reverse chronological order.
+
+Coin counter: Collect coins by hitting the ? blocks in the header – coins persist via localStorage.
+
+Responsive design: Works on all screen sizes with a classic Mario aesthetic.
+
+Profile (World 1-2)
+Custom avatar: Upload a profile picture URL (supports direct image links).
+
+Profile stats: Coins collected, worlds completed, extra lives, power level.
+
+About Me and detailed profile info (location, occupation, specialty, website).
+
+Skills section: Display your technical skills with Mario‑style badges.
+
+Photo albums: Four separate carousels for Friends, Inspirations, Academic, and My Hobby.
+
+Each album has its own left/right navigation.
+
+Click any photo to open a full‑screen lightbox with keyboard navigation.
+
+Edit profile: Inline form to update all profile fields.
+
+Shared
+HUD (Heads‑Up Display): Always‑visible top bar showing current world and coin count.
+
+Animated backgrounds: Scrolling clouds, floating stars, and ground pipes.
+
+Supabase backend: All guestbook entries and profile data are stored in Supabase.
+
+🛠 Technologies Used
+Frontend: React 19, Vite, React Router DOM
+
+Styling: Pure CSS with Mario‑themed custom properties (no UI libraries)
+
+Backend: Supabase (PostgreSQL database, Row Level Security, REST API)
+
+Deployment: Vercel
+
+Version Control: Git / GitHub
+
+🚀 Getting Started
+Prerequisites
+Node.js (v18 or later)
+
+npm or yarn
+
+A Supabase account (free tier)
+
+1. Clone the Repository
+bash
+git clone https://github.com/efl-ward/mobprog_finals.git
+cd mario-guestbook
+2. Install Dependencies
+bash
+npm install
+3. Set Up Supabase
+Create a new Supabase project.
+
+Run the SQL script in supabase/schema.sql to create the required tables and RLS policies:
+
+guestbook – stores guestbook entries
+
+mario_profile – stores profile data (including avatar_url)
+
+hobbies – stores hobby cards 
+
+Copy your project URL and anon key from Supabase → Project Settings → API.
+
+4. Configure Environment Variables
+Create a .env file in the project root with:
+
+text
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+5. Run the Development Server
+bash
+npm run dev
+Visit http://localhost:5173 (or the Codespaces URL) to see the app.
+
+📁 Project Structure
+text
+mario-guestbook/
+├── public/               # Static assets (images, etc.)
+├── src/
+│   ├── assets/           # Icons, images
+│   ├── components/       # React components
+│   │   ├── CarouselSection.jsx
+│   │   ├── CharacterGrid.jsx
+│   │   ├── EntriesList.jsx
+│   │   ├── GroundPipes.jsx
+│   │   ├── GuestbookForm.jsx
+│   │   ├── Header.jsx
+│   │   ├── HUD.jsx
+│   │   ├── ProfileEdit.jsx
+│   │   ├── ProfileView.jsx
+│   │   └── Toast.jsx
+│   ├── App.css           # All Mario‑themed styles
+│   ├── App.jsx           # Main app with routing
+│   ├── main.jsx          # Entry point
+│   └── supabaseClient.js # Supabase client setup
+├── .env                  # Environment variables (ignored by Git)
+├── index.html
+├── package.json
+└── README.md
+🌐 Deployment on Vercel
+Push your code to a GitHub repository.
+
+Import the project into Vercel.
+
+Add the environment variables (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY) in the Vercel dashboard.
+
+Deploy – your app will be live at a *.vercel.app URL.
+
+📸 Screenshots
+Include screenshots of your guestbook and profile pages here (replace with actual links).
+
+Guestbook: https://my-profile-guestbook-1pfp.vercel.app?_vercel_share=A8GFbMnlSxTX9CHSC6O01kgOLIKm86Gk
+Profile: https://my-profile-guestbook-1pfp.vercel.app?_vercel_share=A8GFbMnlSxTX9CHSC6O01kgOLIKm86Gk
+
+🧪 Future Improvements
+Add authentication so each user has their own profile.
+
+Allow uploading images directly to Supabase Storage.
+
+Add more interactive Mario‑themed mini‑games.
+
+👥 Contributors
+Eduard Florence L. Serna – GitHub
+
+📄 License
+This project is for educational purposes as part of the Web Programming final project at Asia Pacific College.
+
+Powered by React, Supabase, and a whole lot of warp pipes.
